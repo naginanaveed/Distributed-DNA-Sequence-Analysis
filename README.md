@@ -1,4 +1,4 @@
-# PDC Final Lab — Distributed DNA K-mer Mining Pipeline
+# PDC - Distributed DNA K-mer Mining Pipeline
 
 ![PySpark](https://img.shields.io/badge/Framework-Apache%20Spark%20%2F%20PySpark-orange?logo=apachespark)
 ![Python](https://img.shields.io/badge/Language-Python%203.x-blue?logo=python)
@@ -9,7 +9,7 @@
 
 ## Overview
 
-This project implements a **fully distributed DNA sequence analysis pipeline** using **Apache Spark (PySpark)** for the **Parallel and Distributed Computing (PDC) Final Lab Exam**. The pipeline ingests raw bacterial genome sequences in FASTA format from NCBI RefSeq, performs distributed feature extraction (GC content, nucleotide composition, k-mer frequencies), and produces comparative bioinformatics results across three bacterial organisms.
+This project implements a **fully distributed DNA sequence analysis pipeline** using **Apache Spark (PySpark)** for the **Parallel and Distributed Computing**. The pipeline ingests raw bacterial genome sequences in FASTA format from NCBI RefSeq, performs distributed feature extraction (GC content, nucleotide composition, k-mer frequencies), and produces comparative bioinformatics results across three bacterial organisms.
 
 The pipeline is designed to scale from a local machine to a full cluster (YARN/Kubernetes) by simply adjusting Spark configuration parameters.
 
