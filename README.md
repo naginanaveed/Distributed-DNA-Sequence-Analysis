@@ -1,4 +1,4 @@
-# 🧬 PDC Final Lab — Distributed DNA K-mer Mining Pipeline
+# PDC Final Lab — Distributed DNA K-mer Mining Pipeline
 
 ![PySpark](https://img.shields.io/badge/Framework-Apache%20Spark%20%2F%20PySpark-orange?logo=apachespark)
 ![Python](https://img.shields.io/badge/Language-Python%203.x-blue?logo=python)
@@ -7,7 +7,7 @@
 
 ---
 
-## 📌 Overview
+## Overview
 
 This project implements a **fully distributed DNA sequence analysis pipeline** using **Apache Spark (PySpark)** for the **Parallel and Distributed Computing (PDC) Final Lab Exam**. The pipeline ingests raw bacterial genome sequences in FASTA format from NCBI RefSeq, performs distributed feature extraction (GC content, nucleotide composition, k-mer frequencies), and produces comparative bioinformatics results across three bacterial organisms.
 
@@ -15,7 +15,7 @@ The pipeline is designed to scale from a local machine to a full cluster (YARN/K
 
 ---
 
-## 🎯 Objectives
+##  Objectives
 
 - Download and parse real-world bacterial genome sequences from NCBI RefSeq (public domain)
 - Build a complete ETL pipeline in PySpark: **Ingest → Clean → Transform → Analyze → Visualize**
@@ -26,7 +26,7 @@ The pipeline is designed to scale from a local machine to a full cluster (YARN/K
 
 ---
 
-## ❓ Problem Statement
+##  Problem Statement
 
 Bacterial genomes contain millions of nucleotides, and analysing their composition manually or sequentially is computationally prohibitive at scale. Key biological questions include:
 
@@ -37,7 +37,7 @@ Bacterial genomes contain millions of nucleotides, and analysing their compositi
 
 ---
 
-## 🦠 Why These Datasets?
+##  Why These Datasets?
 
 Three well-studied, publicly available bacterial genomes were selected from **NCBI RefSeq** because they represent distinct GC content ranges and biological lifestyles — making comparative analysis biologically meaningful.
 
@@ -55,7 +55,7 @@ Three well-studied, publicly available bacterial genomes were selected from **NC
 
 ---
 
-## 🗂️ Dataset Details
+##  Dataset Details
 
 | Property | Value |
 |---|---|
@@ -68,7 +68,7 @@ Three well-studied, publicly available bacterial genomes were selected from **NC
 
 ---
 
-## ⚙️ Tech Stack
+##  Tech Stack
 
 | Component | Tool / Library |
 |---|---|
@@ -81,7 +81,7 @@ Three well-studied, publicly available bacterial genomes were selected from **NC
 
 ---
 
-## 🔁 Pipeline Workflow
+##  Pipeline Workflow
 
 ```
 NCBI RefSeq FASTA (.fna.gz)
@@ -133,7 +133,7 @@ NCBI RefSeq FASTA (.fna.gz)
 
 ---
 
-## 📥 Inputs
+## Inputs
 
 | Input | Description |
 |---|---|
@@ -145,7 +145,7 @@ All files are downloaded automatically by the notebook from the NCBI FTP server.
 
 ---
 
-## 📤 Outputs
+##  Outputs
 
 All output files are written to the `results/` directory.
 
@@ -169,7 +169,7 @@ All output files are written to the `results/` directory.
 
 ---
 
-## 📊 Results & Summary Tables
+##  Results & Summary Tables
 
 ### Table 1 — Genome Summary Statistics per Organism
 
@@ -219,28 +219,41 @@ All output files are written to the `results/` directory.
 
 ---
 
-## 🔬 Biological Interpretation
+##  Biological Interpretation
 
-### 1. GC Content (Table 1, Plot 1)
+### 1. GC Content 
 - **E. coli K-12** (~51% GC) is typical of Enterobacteria — moderate GC content, balanced genome
 - **B. subtilis** (~44% GC) is characteristic of low-GC Firmicutes — soil bacterium adapted to environmental variation
 - **S. aureus** (~33% GC) has very low GC content, typical of Staphylococci and consistent with its role as a human pathogen
 - **Biological relevance:** GC-rich DNA forms more stable hydrogen bonds (3 per G-C pair vs. 2 per A-T pair), so high-GC organisms tend to be more thermostable. Low-GC genomes like S. aureus are often associated with host-adapted, pathogenic lifestyles
 
-### 2. Nucleotide Composition (Table 3, Plot 2)
+
+<img width="2761" height="985" alt="image" src="https://github.com/user-attachments/assets/363506ba-4f53-4778-b2c1-99d53f037d27" />
+
+---
+### 2. Nucleotide Composition 
 - All three organisms confirm **Chargaff's rule** (A ≈ T and G ≈ C on double-stranded DNA)
 - S. aureus shows the most extreme AT enrichment (~67% A+T), confirming its pathogenic adaptation and characteristic low-complexity genomic architecture
 
-### 3. K-mer Frequencies (Table 2, Plot 3)
+
+<img width="800" height="500" alt="image" src="https://github.com/user-attachments/assets/b0bf058f-59bc-45de-8e44-f3b56ef90068" />
+
+---
+### 3. K-mer Frequencies 
 - Low-GC organisms (S. aureus) show dominance of homo-nucleotide runs like AAAA and TTTT in their top k-mers
 - E. coli and B. subtilis exhibit more diverse top k-mers with mixed bases
 - The k-mer GATC is a dam methylase recognition site; its frequency in E. coli has implications for DNA methylation and mismatch repair
 - K-mer profiles can fingerprint organisms and are widely used in metagenomic classification
 
-### 4. K-mer Diversity / Shannon Entropy (Table 4, Plot 4)
+<img width="800" height="500" alt="image" src="https://github.com/user-attachments/assets/029fe8ac-240f-484f-b254-b95439aed3f1" />
+
+---
+
+### 4. K-mer Diversity / Shannon Entropy 
 - All organisms approach **maximum possible Shannon entropy** (~8 bits for k=4, meaning 256 equally probable k-mers), indicating highly complex genomic sequences with no strong compositional depletion
 - S. aureus's marginally lower entropy is consistent with its AT-rich, lower-complexity genomic background
 - All 256 possible 4-mers are observed in all genomes — confirming the datasets represent complete, high-coverage assemblies
+<img width="900" height="400" alt="image" src="https://github.com/user-attachments/assets/02f680f0-aec3-408c-8e4b-b9443041abf0" />
 
 ---
 
@@ -260,47 +273,6 @@ All output files are written to the `results/` directory.
 
 ---
 
-## 🛠️ Setup & Execution
-
-### Prerequisites
-
-```bash
-pip install pyspark biopython matplotlib seaborn pandas numpy
-```
-
-Java (JDK 8 or 11) must be installed for PySpark to run.
-
-### Running the Notebook
-
-```bash
-jupyter notebook PDC_FinalLab_DNA_Kmer_Mining.ipynb
-```
-
-Run all cells top to bottom. The pipeline will:
-1. Auto-download genome FASTA files (~14 MB total)
-2. Initialize a local Spark session (local[*] — uses all CPU cores)
-3. Execute all pipeline steps
-4. Write all CSV tables and PNG plots to `results/`
-
-### Directory Structure After Execution
-
-```
-project/
-├── PDC_FinalLab_DNA_Kmer_Mining.ipynb
-├── data/
-│   ├── ecoli_k12.fna
-│   ├── bsubtilis.fna
-│   └── saureus.fna
-└── results/
-    ├── table1_genome_summary.csv
-    ├── table2_top_kmers.csv
-    ├── table3_nucleotide_composition.csv
-    ├── table4_kmer_diversity.csv
-    ├── plot1_gc_content.png
-    ├── plot2_nucleotide_composition.png
-    ├── plot3_kmer_heatmap.png
-    └── plot4_kmer_diversity.png
-```
 
 ---
 
@@ -319,12 +291,4 @@ All datasets are NCBI public domain. No preprocessing beyond gzip decompression 
 
 ---
 
-## 👥 Course Information
 
-| Field | Detail |
-|---|---|
-| Course | CS315 — Parallel and Distributed Computing |
-| Lab | Final Lab Exam |
-| Institution | NUST — School of Interdisciplinary Engineering and Sciences (SINES) |
-| Framework | Apache Spark (PySpark) |
-| Topic | Distributed DNA Sequence Analysis |
